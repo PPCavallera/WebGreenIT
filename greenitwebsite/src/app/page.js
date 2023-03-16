@@ -1,91 +1,98 @@
+"use client";
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import styles from './page.module.css'
+import { Grid } from "@nextui-org/react";
+import { Card, Col, Row, Button, Text } from "@nextui-org/react";
+import { CardImg } from './CardImg';
 
+
+import styles from './page.module.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const list = [
+    {
+      img: "https://www.nasa.gov/sites/default/files/thumbnails/image/pia16613_orig.jpg",
+    },
+    {
+      img: "https://www.nasa.gov/sites/default/files/thumbnails/image/iss068e056415.jpg",
+    },
+    {
+      img: "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/images/579054main_pia14417_full.jpg",
+    },
+    {
+      img: "https://www.nasa.gov/sites/default/files/thumbnails/image/hubble_30dor_potw2305a_main.jpg",
+    },
+    {
+      img: "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/hubble_v372ori_potw2304a.jpg",
+    },
+    {
+      img: "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/stsci-01gq5chesabwmhrf5na60a6mpf_0.png",
+    },
+    {
+      img: "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/hubble_ngc1858.jpg",
+    },
+    {
+      img: "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/stsci-01gkmkkhkk7hr64v5hgx4gms9k_0.png",
+    },
+    {
+      img: "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/hubble_cb130-3_potw2246a.jpg",
+    },
+    {
+      img: "https://www.nasa.gov/sites/default/files/styles/full_width_feature/public/thumbnails/image/potw1441a.jpg",
+    },]
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <Grid.Container gap={2} justify="center">
+      {list.map((item, index) => (
+        <Grid xs={6} sm={3} key={index}>
+          <Card isPressable>
+            <Card.Body css={{ p: 0 }}>
+              <Card.Image
+                src={item.img}
+                objectFit="cover"
+                width={150}
+                height={100}
+                alt={"img"}
+              />
+            </Card.Body>
+            <Card.Footer
+              isBlurred
+              css={{
+                position: "absolute",
+                bgBlur: "#ffffff66",
+                borderTop: "$borderWeights$light solid rgba(255, 255, 255, 0.2)",
+                bottom: 0,
+                zIndex: 1,
+              }}
+            >
+              <Row>
+                <Col>
+                  <Text color="#000" size={12}>
+                    Click & See
+                  </Text>
+                </Col>
+                <Col>
+                  <Row justify="flex-end">
+                    <Button flat auto rounded color="secondary">
+                      <Text
+                        css={{ color: "inherit" }}
+                        size={12}
+                        weight="bold"
+                        transform="uppercase"
+                      >
+                        Check img
+                      </Text>
+                    </Button>
+                  </Row>
+                </Col>
+              </Row>
+            </Card.Footer>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
-        </div>
-      </div>
+          </Card>
+        </Grid>
+      ))}
+    </Grid.Container >
 
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+  );
 }
