@@ -5,7 +5,6 @@ import React from "react";
 import { Inter } from 'next/font/google'
 import { Grid } from "@nextui-org/react";
 import { Modal, Card, Col, Input, Checkbox, Row, Button, Text } from "@nextui-org/react";
-import { CardImg } from './CardImg';
 
 
 import styles from './page.module.css'
